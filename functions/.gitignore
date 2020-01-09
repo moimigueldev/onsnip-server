@@ -1,1 +1,5 @@
 node_modules/
+auth-config.js
+ServiceAccountKey.json
+tracks.js
+tracks-small.js
