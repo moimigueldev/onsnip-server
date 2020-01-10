@@ -45,7 +45,7 @@ router.post('/loginUser', async (req, res) => {
 
   const userInfo = await rp(options)
     .then(res => JSON.parse(res))
-  // .catch(err => console.log('err', err))
+  .catch(err =>  err)
 
 
   const currentUser = await userDB.searchDBForUser(userInfo, req.body.token)
@@ -53,10 +53,10 @@ router.post('/loginUser', async (req, res) => {
 
 
 
-  userDB.saveUserData(userData, req.body.token).then(() => {
-    res.send(currentUser)
+  return userDB.saveUserData(userData, req.body.token).then(() => {
+    return res.send(currentUser)
   })
-  // .catch(err => console.log('Error Saving User to the db', err))
+  .catch(err => err)
 
 
 
@@ -70,8 +70,8 @@ router.post('/loginUser', async (req, res) => {
 router.post('/savedUser', cache(960000), (req, res) => {
   const cookie = req.body.cookie
 
-  userDB.getSavedUserData(cookie).then(response => {
-    res.send(response)
+  return userDB.getSavedUserData(cookie).then(response => {
+    return res.send(response)
   })
 
 

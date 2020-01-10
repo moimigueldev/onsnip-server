@@ -32,7 +32,7 @@ const userData = (list) => {
         }
     }); //end of loop
 
-    let artistSorted = Object.keys(artistsList).sort(function (a, b) { return artistsList[a] - artistsList[b] }).reverse()
+    let artistSorted = Object.keys(artistsList).sort((a, b) => { return artistsList[a] - artistsList[b] }).reverse()
 
 
 
@@ -65,13 +65,13 @@ const mergeGenresList = (list) => {
     const finalList = []
     const newList = ',' + list.join(',') + ','
 
-    list.map(el => {
+    list.forEach((el) => {
         const regex = new RegExp(`,${el},`, 'g');
         if (!genres.includes(el)) {
             finalList.push({ name: el, total: newList.match(regex).length })
             genres.push(el)
         }
-    });
+    })
 
     return finalList.sort((a, b) => b.total - a.total);
 

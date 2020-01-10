@@ -7,17 +7,18 @@ const cache = (duration) => {
         // console.log('cached-boyd', cachedBody)
         if (cachedBody) {
             res.send(cachedBody)
-            return
+            return null
         } else {
             res.sendResponse = res.send
             res.send = (body) => {
                 mcache.put(key, body, duration * 1000);
                 res.sendResponse(body)
             }
-            next()
+            return next()
         }
     }
 }
+
 
 module.exports = cache
 

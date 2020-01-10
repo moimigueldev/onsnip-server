@@ -20,7 +20,7 @@ const searchDBForUser = async (userLoggedIn, token) => {
         }
 
 
-        db.collection('users').doc(profile.id).set(newUser).then((user) => {
+        return db.collection('users').doc(profile.id).set(newUser).then((user) => {
             return user.data();
         })
     } else {
@@ -52,9 +52,9 @@ const saveUserData = async (data, token) => {
     }).then(response => {
         return response
     })
-    // .catch(err => {
-    //     console.log('could not save to the database', err)
-    // })
+    .catch(err => {
+        return err
+    })
 
 
 
@@ -65,16 +65,16 @@ const getSavedUserData = async (cookie) => {
     const filteredData = await db.doc(`users/${id}/${id}/filteredData`).get().then(response => {
         return response.data()
     })
-    // .catch(err => {
-    //     console.log('ERROR Could not get user', err)
-    // })
+    .catch(err => {
+        return err
+    })
 
     const analytics = await db.doc(`users/${id}/${id}/analytics`).get().then(response => {
         return response.data()
     })
-    // .catch(err => {
-    //     console.log('ERROR Could not get user', err)
-    // })
+    .catch(err => {
+        return err
+    })
 
 
 
