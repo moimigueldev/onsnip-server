@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const keys = require('../secret-keys/enviorment-variables');
 const rp = require('request-promise');
-// const userDB = require('./db-user');
+const userDB = require('../modules/db/db-user');
 const analyticsSearch = require('../modules/collect-data')
 const cache = require('./cache-routes')
 const SpotifyWebApi = require('spotify-web-api-node');
