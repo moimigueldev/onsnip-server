@@ -52,9 +52,9 @@ const saveUserData = async (data, token) => {
     }).then(response => {
         return response
     })
-    .catch(err => {
-        return err
-    })
+        .catch(err => {
+            return err
+        })
 
 
 
@@ -65,16 +65,16 @@ const getSavedUserData = async (cookie) => {
     const filteredData = await db.doc(`users/${id}/${id}/filteredData`).get().then(response => {
         return response.data()
     })
-    .catch(err => {
-        return err
-    })
+        .catch(err => {
+            return err
+        })
 
     const analytics = await db.doc(`users/${id}/${id}/analytics`).get().then(response => {
         return response.data()
     })
-    .catch(err => {
-        return err
-    })
+        .catch(err => {
+            return err
+        })
 
 
 
