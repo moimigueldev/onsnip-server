@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const admin = require('firebase-admin');
-const serviceAccountKey = require('./ServiceAccountKey.json')
+const serviceAccountKey = require('./secret-keys/ServiceAccountKey.json')
  
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccountKey)
@@ -21,11 +21,9 @@ app.use(bodyParser.json());
 
 // ROUTES
 
-// const authRoutes = require('./routes/auth-routes');
+const authRoutes = require('./routes/auth-routes');
 
-
-// app.use('/auth', authRoutes)
-
+app.use('/auth', authRoutes)
 
 app.get('/', (req, res) => {
     res.send('ok')

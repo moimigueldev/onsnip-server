@@ -1,5 +1,6 @@
 node_modules/
-auth-config.js
-ServiceAccountKey.json
+secret-keys
+# secret-keys/enviorment-variables.js
+# secret-keys/ServiceAccountKey.json
 tracks.js
 tracks-small.js
