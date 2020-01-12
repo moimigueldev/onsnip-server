@@ -1,5 +1,7 @@
 var mcache = require('memory-cache');
 
+
+// This is the code to cahce response to server for 16 secs, which is the max
 const cache = (duration) => {
     return (req, res, next) => {
         let key = '__express__' + req.originalUrl || req.url
