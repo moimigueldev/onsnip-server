@@ -1,6 +1,7 @@
 // const trackList = require('../tracks-small')
-// const tracks = require('../tracks')
+const trackList = require('../tracks')
 const moment = require('moment');
+const write = require('write');
 
 
 const userData = (list) => {
@@ -9,6 +10,8 @@ const userData = (list) => {
     const lastYear = [];
     const thisMonth = [];
     const artistsList = {}
+
+
 
     list.forEach(el => {
 
@@ -47,14 +50,19 @@ const userData = (list) => {
 const returnSortedArtistValues = (list, original) => {
     const finalArtistList = {}
     const finalList = [];
+    let other = 0;
     for (let el of list) {
         if (original[el] === 1) {
+            other += 1
             break
         }
         finalArtistList[el] = original[el];
 
+
         finalList.push({ artist: el, total: original[el] })
     }
+
+    finalList.push({ artist: 'other', total: other })
     return finalList;
 }
 
@@ -80,3 +88,7 @@ const mergeGenresList = (list) => {
 
 
 module.exports = { userData, mergeGenresList }
+
+
+ //WRITING
+    // await write('tracks.json', JSON.stringify(list), { overwrite: true });

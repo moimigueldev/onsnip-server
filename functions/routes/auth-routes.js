@@ -9,6 +9,7 @@ var mcache = require('memory-cache');
 
 
 
+
 const scopes = keys.spotify['scopes'];
 
 
@@ -50,6 +51,8 @@ router.post('/loginUser', async (req, res) => {
 
     const currentUser = await userDB.searchDBForUser(userInfo, req.body.token)
     const userData = await analyticsSearch.userData(currentUser, req.body.token)
+
+
 
 
 

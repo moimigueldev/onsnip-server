@@ -36,12 +36,13 @@ const playlist = async (id, token) => {
 let tracksList = [];
 
 const savedtracks = async (offset, token) => {
-    // console.log('looping', offset)
+    console.log('looping', offset)
 
     let tracks = await getUsersSavedTracks(offset, token)
     tracks = JSON.parse(tracks)
 
     tracks.items.length ? tracksList.push(...tracks.items) : null;
+
 
     if (offset !== tracks.total) {
         offset = tracks.total - offset >= 50 ? offset + 50 : (tracks.total - offset) + offset
