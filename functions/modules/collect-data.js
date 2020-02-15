@@ -4,6 +4,8 @@ const filterData = require('./filter-data');
 
 
 const artistFollowing = async (token) => {
+
+
     const options = {
         'method': 'GET',
         'url': 'https://api.spotify.com/v1/me/following?type=artist&limit=50',
@@ -13,8 +15,22 @@ const artistFollowing = async (token) => {
         }
     };
 
-    return rp(options).then(response => JSON.parse(response).artists.items)
+    // return rp(options).then(response => JSON.parse(response).artists.items)
     // .catch(err => console.log('Error with geting users artist following', err))
+
+    return rp(options).then(response => {
+        response = JSON.parse(response).artists.items
+        return list = response.map(item => {
+            return {
+                name: item.name,
+                followers: item.followers.total,
+                image: item.images[item.images.length - 1].url,
+                genres: item.genres
+            }
+        })
+
+    })
+
 }
 
 const playlist = async (id, token) => {
