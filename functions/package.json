@@ -21,6 +21,7 @@
     "firebase-functions": "^3.3.0",
     "memory-cache": "^0.2.0",
     "moment": "^2.24.0",
+    "pretty-ms": "^6.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "spotify-web-api-node": "^4.0.0"

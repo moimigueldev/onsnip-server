@@ -1,6 +1,7 @@
 const rp = require('request-promise');
 const keys = require('../secret-keys/enviorment-variables')
 const filterData = require('./filter-data');
+const prettyMilliseconds = require('pretty-ms');
 
 
 const artistFollowing = async (token) => {
@@ -105,7 +106,7 @@ const getTopTracks = async (token) => {
             return {
                 name: item.name,
                 image: item.album.images[item.album.images.length - 1].url,
-                duration: item.duration_ms,
+                duration: formatSongDuration(item.duration_ms),
                 album: item.album.name
             }
 
@@ -114,6 +115,13 @@ const getTopTracks = async (token) => {
         // return rp(options).then(response => JSON.parse(response).items)
         .catch(err => err)
 }
+
+const formatSongDuration = (ms) => {
+    const time = prettyMilliseconds(ms, { colonNotation: true })
+    return time.substring(0, time.lastIndexOf('.'))
+}
+
+
 
 const getTopArtist = async (token) => {
     const options = {

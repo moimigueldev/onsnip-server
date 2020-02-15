@@ -8,6 +8,10 @@ const admin = require('firebase-admin');
 const serviceAccountKey = require('./secret-keys/ServiceAccountKey.json')
 // const filter = require('./modules/filter-data')
 
+
+
+
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccountKey)
 });
