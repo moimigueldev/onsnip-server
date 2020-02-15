@@ -29,7 +29,7 @@ const artistFollowing = async (token) => {
             }
         })
 
-    })
+    }); // end of promise
 
 }
 
@@ -97,7 +97,21 @@ const getTopTracks = async (token) => {
         }
     };
 
-    return rp(options).then(response => JSON.parse(response).items)
+
+    return rp(options).then(response => {
+        response = JSON.parse(response).items
+
+        return list = response.map(item => {
+            return {
+                name: item.name,
+                image: item.album.images[item.album.images.length - 1].url,
+                duration: item.duration_ms,
+                album: item.album.name
+            }
+
+        })
+    })
+        // return rp(options).then(response => JSON.parse(response).items)
         .catch(err => err)
 }
 
