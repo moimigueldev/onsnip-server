@@ -47,7 +47,7 @@ const saveUserData = async (data, token) => {
         tracksSavedThisMonth: data.filteredTracks.thisMonthCounter,
         tracksSavedThisYear: data.filteredTracks.thisYearCounter,
         tracksSavedlastYear: data.filteredTracks.lastYearCounter,
-        mostListenedArtist: data.filteredTracks.finalList
+        // mostListenedArtist: data.filteredTracks.finalList
     })
 
     return db.collection('users').doc(data.user.id).update({

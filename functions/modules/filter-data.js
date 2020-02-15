@@ -59,8 +59,8 @@ const userData = (list) => {
 
     // console.log('data', thisMonthCounter, thisYearCounter, lastYearCounter)
 
-    const finalList = returnSortedArtistValues(artistSorted, artistsList)
-    return { thisMonthCounter, thisYearCounter, lastYearCounter, finalList }
+    // const finalList = returnSortedArtistValues(artistSorted, artistsList)
+    return { thisMonthCounter, thisYearCounter, lastYearCounter }
 }
 
 // this sniped gives the sorted list the object values back, might not be necessery
