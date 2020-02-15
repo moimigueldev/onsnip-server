@@ -34,12 +34,14 @@ const playlist = async (id, token) => {
 }
 
 let tracksList = [];
+let totalTracks = 0;
 
 const savedtracks = async (offset, token) => {
     console.log('looping', offset)
 
     let tracks = await getUsersSavedTracks(offset, token)
     tracks = JSON.parse(tracks)
+
 
     tracks.items.length ? tracksList.push(...tracks.items) : null;
 
@@ -49,6 +51,8 @@ const savedtracks = async (offset, token) => {
         return savedtracks(offset, token)
     }
 
+
+    totalTracks = tracks.total;
     return tracksList
 }
 
@@ -116,6 +120,8 @@ const userData = async (user, token) => {
     const userTopTracks = await getTopTracks(token)
 
 
+
+
     return {
         userArtistFollowing,
         userPlaylist,
@@ -124,7 +130,8 @@ const userData = async (user, token) => {
         userTopTracks,
         userTopArtist,
         user,
-        topGenres
+        topGenres,
+        totalTracks
     }
 }
 

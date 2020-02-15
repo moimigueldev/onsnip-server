@@ -7,7 +7,6 @@ const db = admin.firestore();
 
 const searchDBForUser = async (userLoggedIn, token) => {
 
-    console.log('creating user')
     const profile = userLoggedIn
     const user = await db.collection('users').doc(profile.id).get();
 
@@ -23,11 +22,10 @@ const searchDBForUser = async (userLoggedIn, token) => {
 
 
         return db.collection('users').doc(profile.id).set(newUser).then((userData) => {
-            console.log('user')
+
             return newUser;
         })
     } else {
-        console.log('other user', user)
         return user.data();
     }
 }
@@ -40,6 +38,7 @@ const saveUserData = async (data, token) => {
         topTracks: data.userTopTracks,
         topArtist: data.userTopArtist,
         topGenres: data.topGenres,
+        totalSongs: data.totalTracks
 
     });
 

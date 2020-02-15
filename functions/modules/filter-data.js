@@ -1,9 +1,9 @@
 // const trackList = require('../tracks-small')
-const trackList = require('../tracks')
+// const trackList = require('../tracks')
 const moment = require('moment');
 // const write = require('write');
 
-console.log('tacks', trackList.length)
+
 const userData = (list) => {
     const date = moment().format().toString().split('-');
     const thisYear = [];
