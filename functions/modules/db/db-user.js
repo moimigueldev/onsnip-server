@@ -6,6 +6,8 @@ const db = admin.firestore();
 
 
 const searchDBForUser = async (userLoggedIn, token) => {
+
+    console.log('creating user')
     const profile = userLoggedIn
     const user = await db.collection('users').doc(profile.id).get();
 
@@ -20,10 +22,12 @@ const searchDBForUser = async (userLoggedIn, token) => {
         }
 
 
-        return db.collection('users').doc(profile.id).set(newUser).then((user) => {
-            return user.data();
+        return db.collection('users').doc(profile.id).set(newUser).then((userData) => {
+            console.log('user')
+            return newUser;
         })
     } else {
+        console.log('other user', user)
         return user.data();
     }
 }
@@ -40,9 +44,9 @@ const saveUserData = async (data, token) => {
     });
 
     await db.doc(`users/${data.user.id}/${data.user.id}/filteredData`).set({
-        tracksSavedThisMonth: data.filteredTracks.thisMonth,
-        tracksSavedThisYear: data.filteredTracks.thisYear,
-        tracksSavedlastYear: data.filteredTracks.lastYear,
+        tracksSavedThisMonth: data.filteredTracks.thisMonthCounter,
+        tracksSavedThisYear: data.filteredTracks.thisYearCounter,
+        tracksSavedlastYear: data.filteredTracks.lastYearCounter,
         mostListenedArtist: data.filteredTracks.finalList
     })
 

@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// console.log('data', filter.mergeGenresList([1]))
+// console.log('data', filter.userData([1]))
 
 // ROUTES
 

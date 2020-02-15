@@ -1,15 +1,20 @@
 // const trackList = require('../tracks-small')
-// const trackList = require('../track')
+const trackList = require('../tracks')
 const moment = require('moment');
 // const write = require('write');
 
-
+console.log('tacks', trackList.length)
 const userData = (list) => {
     const date = moment().format().toString().split('-');
     const thisYear = [];
     const lastYear = [];
     const thisMonth = [];
     const artistsList = {}
+
+    let thisYearCounter = 0;
+    let thisMonthCounter = 0;
+    let lastYearCounter = 0;
+
 
 
 
@@ -18,13 +23,22 @@ const userData = (list) => {
         const createdAt = el.added_at.split('-');
         const artist = el.track.album.artists[0].name
 
+        // // TRACKS ADDED THIS YEAR, MONTH, LAST YEAR
+        // // tracks added this year
+        // if (createdAt[0] === date[0]) thisYear.push(el);
+        // // Tracks added last year
+        // if (Number(createdAt[0]) === Number(date[0] - 1)) lastYear.push(el);
+        // //Tracks Added This Month
+        // if (createdAt[0] === date[0] && createdAt[1] === date[1]) thisMonth.push(el);
+        // // ARTISTS LITENED TO
+
         // TRACKS ADDED THIS YEAR, MONTH, LAST YEAR
         // tracks added this year
-        if (createdAt[0] === date[0]) thisYear.push(el);
+        if (createdAt[0] === date[0]) thisYearCounter += 1;
         // Tracks added last year
-        if (Number(createdAt[0]) === Number(date[0] - 1)) lastYear.push(el);
+        if (Number(createdAt[0]) === Number(date[0] - 1)) lastYearCounter += 1;
         //Tracks Added This Month
-        if (createdAt[0] === date[0] && createdAt[1] === date[1]) thisMonth.push(el);
+        if (createdAt[0] === date[0] && createdAt[1] === date[1]) thisMonthCounter += 1
         // ARTISTS LITENED TO
 
 
@@ -41,9 +55,12 @@ const userData = (list) => {
 
 
     // artistSorted = returnSortedArtistValues(artistSorted.reverse(), artistsList)
-    const finalList = returnSortedArtistValues(artistSorted, artistsList)
     // console.log('sorted', artistSorted)
-    return { thisMonth, thisYear, lastYear, finalList }
+
+    // console.log('data', thisMonthCounter, thisYearCounter, lastYearCounter)
+
+    const finalList = returnSortedArtistValues(artistSorted, artistsList)
+    return { thisMonthCounter, thisYearCounter, lastYearCounter, finalList }
 }
 
 // this sniped gives the sorted list the object values back, might not be necessery
