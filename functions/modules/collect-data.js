@@ -45,31 +45,32 @@ const playlist = async (id, token) => {
         }
     };
 
-    // return rp(options).then(response => {
-    //     response = JSON.parse(response).items
+    return rp(options).then(response => {
+        let playlist = JSON.parse(response).items
+        const plList = [];
 
-    //     response.forEach((pl, index) => {
-    //         const list = [];
+        playlist.forEach((pl, index) => {
 
-    //         if (pl.images.length) {
-    //             list.push({
-    //                 name: pl.name,
-    //                 total: pl.tracks.total,
-    //                 image: pl.images[pl.images.length - 1].url
-    //             })
-    //         } else {
-    //             list.push({
-    //                 name: pl.name,
-    //                 total: pl.tracks.total,
-    //                 image: 'https://www.wcifly.com/icons/nopicture.png'
-    //             })
-    //         }
 
-    //     })
+            if (pl.images.length) {
+                plList.push({
+                    name: pl.name,
+                    total: pl.tracks.total,
+                    image: pl.images[pl.images.length - 1].url
+                })
+            } else {
+                plList.push({
+                    name: pl.name,
+                    total: pl.tracks.total,
+                    image: 'https://www.wcifly.com/icons/nopicture.png'
+                })
+            }
 
-    //     return list;
-    // })
-    return rp(options).then(response => JSON.parse(response).items)
+        })
+
+        return plList;
+    })
+    // return rp(options).then(response => JSON.parse(response).items)
     // .catch(err => console.log('Error with getting the user\'s Playlist', err))
 
 }
@@ -170,9 +171,6 @@ const getTopArtist = async (token) => {
         })
 
         return list;
-
-
-
     })
 
     // .catch(err => {
