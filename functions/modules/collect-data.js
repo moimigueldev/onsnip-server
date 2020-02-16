@@ -45,6 +45,30 @@ const playlist = async (id, token) => {
         }
     };
 
+    // return rp(options).then(response => {
+    //     response = JSON.parse(response).items
+
+    //     response.forEach((pl, index) => {
+    //         const list = [];
+
+    //         if (pl.images.length) {
+    //             list.push({
+    //                 name: pl.name,
+    //                 total: pl.tracks.total,
+    //                 image: pl.images[pl.images.length - 1].url
+    //             })
+    //         } else {
+    //             list.push({
+    //                 name: pl.name,
+    //                 total: pl.tracks.total,
+    //                 image: 'https://www.wcifly.com/icons/nopicture.png'
+    //             })
+    //         }
+
+    //     })
+
+    //     return list;
+    // })
     return rp(options).then(response => JSON.parse(response).items)
     // .catch(err => console.log('Error with getting the user\'s Playlist', err))
 
