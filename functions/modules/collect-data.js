@@ -111,9 +111,7 @@ const getTopTracks = async (token) => {
             }
 
         })
-    })
-        // return rp(options).then(response => JSON.parse(response).items)
-        .catch(err => err)
+    }).catch(err => err)
 }
 
 const formatSongDuration = (ms) => {
@@ -133,7 +131,26 @@ const getTopArtist = async (token) => {
         }
     };
 
-    return rp(options).then(response => JSON.parse(response).items)
+    return rp(options).then(response => {
+        response = JSON.parse(response).items;
+        const list = []
+
+        response.forEach(item => {
+            if (item.images.length > 2 && item.genres.length) {
+                list.push({
+                    name: item.name,
+                    image: item.images[item.images.length - 1].url,
+                    genres: item.genres
+                })
+            }
+        })
+
+        return list;
+
+
+
+    })
+
     // .catch(err => {
     //   console.log("err", err)
     // })
@@ -178,6 +195,7 @@ const userData = async (user, token) => {
 const getGenres = (list) => {
     for (const el of list) {
         genresList.push(...el.genres)
+
     }
 }
 
