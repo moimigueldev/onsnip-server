@@ -92,7 +92,6 @@ const returnSortedArtistValues = (list, original) => {
 const mergeGenresList = (list) => {
 
 
-
     const genres = [];
     const finalList = []
     const newList = ',' + list.join(',') + ','
@@ -101,10 +100,12 @@ const mergeGenresList = (list) => {
         const regex = new RegExp(`,${el},`, 'g');
         if (!genres.includes(el)) {
 
+            if (newList.match(regex) === null) {
 
-            finalList.push({ name: el, total: newList.match(regex).length })
-
-            genres.push(el)
+            } else {
+                finalList.push({ name: el, total: newList.match(regex).length })
+                genres.push(el)
+            }
         }
     });
 
