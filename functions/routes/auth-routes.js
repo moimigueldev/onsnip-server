@@ -35,7 +35,6 @@ router.get('/spotify/callback', (req, res) => {
 
 router.post('/loginUser', async (req, res) => {
 
-    console.log('login in user')
     const options = {
         url: 'https://api.spotify.com/v1/me',
         headers: {
