@@ -69,18 +69,23 @@ router.post('/loginUser', async (req, res) => {
 
 
 // Cache is setting for 16 min (MAX)
-router.post('/savedUser', cache(960000), (req, res) => {
-    const cookie = req.body.cookie
+// router.post('/savedUser', cache(960000), (req, res) => {
+//     const cookie = req.body.cookie
 
-    return userDB.getSavedUserData(cookie).then(response => {
-        return res.send(response)
-    })
+//     return userDB.getSavedUserData(cookie).then(response => {
+//         return res.send(response)
+//     })
 
+// })
 
+// router.post('/savedUser', (req, res) => {
+//     const cookie = req.body.cookie
 
+//     return userDB.getSavedUserData(cookie).then(response => {
+//         return res.send(response)
+//     })
 
-
-})
+// })
 
 
 // CLEARS THE TIME FOR THE CACHED ROUTES
