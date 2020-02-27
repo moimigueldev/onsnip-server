@@ -88,7 +88,7 @@ router.post('/loginUser', async (req, res) => {
 // })
 
 
-// CLEARS THE TIME FOR THE CACHED ROUTES
+// CLEARS THE TIME FOR THE CACHED ROUTES cached
 router.get('/logout', (req, res) => {
     if (mcache.keys().length) {
         mcache.clear();
