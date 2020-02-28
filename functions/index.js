@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// console.log('data', filter.userData([1]))
 
 // ROUTES
 
